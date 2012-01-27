@@ -31,19 +31,19 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ow2.easybeans.persistence</groupId>
-  <artifactId>easybeans-persistence-hibernate-3.6</artifactId>
+  <artifactId>easybeans-persistence-hibernate-4.0</artifactId>
   <packaging>bundle</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>EasyBeans/Persistence :: Hibernate :: v3.6</name>
-  <description>Easybeans Hibernate 3.6 bundle</description>
+  <name>EasyBeans/Persistence :: Hibernate :: v4.0</name>
+  <description>Easybeans Hibernate 4.0 bundle</description>
 
   <properties>
-    <hibernate-core.version>3.6.9.Final</hibernate-core.version>
-    <hibernate-validator.version>4.0.2.GA</hibernate-validator.version>
-    <hibernate-entitymanager.version>3.6.9.Final</hibernate-entitymanager.version>
-    <hibernate-search.version>3.4.1.Final</hibernate-search.version>
-    <hibernate-commons-annotations.version>3.2.0.Final</hibernate-commons-annotations.version>
-    <javassist.version>3.12.1.GA</javassist.version>
+    <hibernate-core.version>4.0.1.Final</hibernate-core.version>
+    <hibernate-validator.version>4.2.0.Final</hibernate-validator.version>
+    <hibernate-entitymanager.version>4.0.1.Final</hibernate-entitymanager.version>
+    <hibernate-search.version>4.0.0.Final</hibernate-search.version>
+    <hibernate-commons-annotations.version>4.0.1.Final</hibernate-commons-annotations.version>
+    <javassist.version>3.15.0-GA</javassist.version>
     <ow2-spec.version>1.0.10</ow2-spec.version>
     <easybeans-utils.version>0.0.1-SNAPSHOT</easybeans-utils.version>
   </properties>
@@ -71,20 +71,30 @@
           <groupId>javax.security</groupId>
           <artifactId>jacc</artifactId>
         </exclusion>
-
+        <exclusion>
+          <groupId>org.jboss.spec.javax.transaction</groupId>
+          <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.0-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jboss.logging</groupId>
+          <artifactId>jboss-logging</artifactId>
+        </exclusion>
         <!--  Should use the last version -->
         <exclusion>
           <groupId>commons-collections</groupId>
           <artifactId>commons-collections</artifactId>
         </exclusion>
-
       </exclusions>
     </dependency>
 
 
     <!--  Common Annotations -->
     <dependency>
-      <groupId>org.hibernate</groupId>
+      <groupId>org.hibernate.common</groupId>
       <artifactId>hibernate-commons-annotations</artifactId>
       <version>${hibernate-commons-annotations.version}</version>
       <exclusions>
@@ -194,7 +204,7 @@
           <artifactId>hibernate-core</artifactId>
         </exclusion>
         <exclusion>
-          <groupId>org.hibernate</groupId>
+          <groupId>org.hibernate.common</groupId>
           <artifactId>hibernate-commons-annotations</artifactId>
         </exclusion>
         <exclusion>
@@ -243,46 +253,41 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName>org.ow2.easybeans.osgi.persistence.hibernate.v3.6</Bundle-SymbolicName>
+            <Bundle-SymbolicName>org.ow2.easybeans.osgi.persistence.hibernate.v4.0</Bundle-SymbolicName>
             <Bundle-Activator>org.ow2.easybeans.osgi.hibernate.HibernateActivator</Bundle-Activator>
             <Private-Package><![CDATA[
               org.hibernate.ejb.packaging;-split-package:=first,
-              org.jboss.util.file;-split-package:=first
               ]]>
             </Private-Package>
             <Embed-StripGroup>true</Embed-StripGroup>
             <Embed-Directory>dependencies</Embed-Directory>
             <Embed-Dependency>*;scope=compile|runtime;inline=true;artifactId=!jboss-common;artifactId=!hibernate-entitymanager</Embed-Dependency>
             <Import-Package><![CDATA[
-                     !org.objectweb.asm.*,
                      !org.hibernate.repackage.cglib.asm.util,
-                     !com.ibm.ejs.jts.jta.*,
                      !com.sun.msv.*,
                      !com.googlecode.*,
-                     !com.ibm.ws.Transaction.*,
-                     !com.ibm.websphere.jtaextensions,
                      bitronix.tm;resolution:=optional,
-                     javax.validation.*;resolution:=optional,
-                     com.wutka.*;resolution:=optional,
-                     org.apache.log4j.*;resolution:=optional,
+                     com.fasterxml.classmate.*;resolution:=optional,
+                     org.apache.avro.*;resolution:=optional,
                      net.sf.cglib.asm.*;resolution:=optional,
                      org.codehaus.aspectwerkz.*;resolution:=optional,
-                     org.apache.webdav.*;resolution:=optional,
-                     gnu.regexp.*;resolution:=optional,
                      org.relaxng.datatype;resolution:=optional,
                      org.jaxen.*;resolution:=optional,
+                     org.jboss.jandex.*;resolution:=optional,
+                     org.jboss.logmanager.*;resolution:=optional,
+                     org.joda.time.*;resolution:=optional,
+                     org.jsoup.*;resolution:=optional,
                      org.apache.solr.*;resolution:=optional,
                      net.sf.snowball.ext;resolution:=optional,
                      junit.framework;resolution:=optional,
                      org.apache.tools.ant.*;resolution:=optional,
-                     org.apache.xerces.*;resolution:=optional,
-                     org.apache.commons.httpclient.*;resolution:=optional,
                      org.xmlpull.v1.*;resolution:=optional,
                      org.apache.lucene.analysis.*;resolution:=optional,
                      org.apache.lucene.search.highlight;resolution:=optional,
+                     org.apache.log4j.*;resolution:=optional,
                      org.apache.commons.io;resolution:=optional,
                      org.apache.commons.codec.*;resolution:=optional,
-                     org.apache.ws.jaxme.*;resolution:=optional,
+                     org.apache.commons.lang.*;resolution:=optional,
                      org.objectweb.jonas_tm;resolution:=optional,
                      org.gjt.xpp.*;resolution:=optional,
                      org.jgroups.*;resolution:=optional,
@@ -290,11 +295,12 @@
              ]]>
             </Import-Package>
             <DynamicImport-Package>*</DynamicImport-Package>
-            <Export-Package><![CDATA[org.jboss.*;-split-package:=merge-first,org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.osgi.hibernate]]></Export-Package>
+            <Export-Package><![CDATA[org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.osgi.hibernate]]></Export-Package>
             <_exportcontents><![CDATA[
                      antlr.*,
                      org.dom4j.*,
                      org.hibernate.*,
+                     org.jboss.logging,
                      net.sf.cglib.proxy;-split-package:=merge-first,
                      net.sf.cglib.reflect;-split-package:=merge-first,
                      net.sf.cglib.core;-split-package:=merge-first]]>
@@ -332,12 +338,13 @@
       <scope>provided</scope>
     </dependency>
 
-    <!--  Hibernate and dependencies -->
+    <!--  Hibernate and dependencies
     <dependency>
       <groupId>jboss</groupId>
       <artifactId>jboss-common</artifactId>
       <version>4.0.4</version>
     </dependency>
+ -->
 
     <dependency>
       <groupId>antlr</groupId>
@@ -357,7 +364,7 @@
         Include it here so that proper Import-Packages are generated by
         Bnd
       -->
-      <groupId>javassist</groupId>
+      <groupId>org.javassist</groupId>
       <artifactId>javassist</artifactId>
       <version>${javassist.version}</version>
       <scope>provided</scope>
@@ -365,7 +372,7 @@
 
     <!--  Common Annotations -->
     <dependency>
-      <groupId>org.hibernate</groupId>
+      <groupId>org.hibernate.common</groupId>
       <artifactId>hibernate-commons-annotations</artifactId>
     </dependency>
 
@@ -390,7 +397,7 @@
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
-      <version>3.1.0</version>
+      <version>3.4.0</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate.apache.lucene.solr</groupId>
@@ -415,6 +422,13 @@
       <artifactId>cglib-nodep</artifactId>
       <version>2.1_3</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+      <version>3.1.0.CR2</version>
+    </dependency>
+
 
     <dependency>
       <groupId>dom4j</groupId>
