@@ -33,126 +33,26 @@
   <groupId>org.ow2.easybeans.persistence</groupId>
   <artifactId>easybeans-persistence-hibernate-3.5</artifactId>
   <packaging>bundle</packaging>
+  <version>0.0.1-SNAPSHOT</version>
   <name>EasyBeans/Persistence :: Hibernate :: v3.5</name>
   <description>Easybeans Hibernate 3.5 bundle</description>
 
   <properties>
     <hibernate-core.version>3.5.6-Final</hibernate-core.version>
-    <hibernate-annotations.version>3.4.0.GA</hibernate-annotations.version>
-    <hibernate-validator.version>3.1.0.GA</hibernate-validator.version>
-    <hibernate-entitymanager.version>3.4.0.GA</hibernate-entitymanager.version>
+    <hibernate-annotations.version>3.5.6-Final</hibernate-annotations.version>
+    <hibernate-validator.version>4.0.2.GA</hibernate-validator.version>
+    <hibernate-entitymanager.version>3.5.6-Final</hibernate-entitymanager.version>
     <hibernate-search.version>3.1.1.GA</hibernate-search.version>
-    <hibernate-commons-annotations.version>3.3.0.ga</hibernate-commons-annotations.version>
+    <hibernate-commons-annotations.version>3.2.0.Final</hibernate-commons-annotations.version>
     <javassist.version>3.12.1.GA</javassist.version>
     <ow2-spec.version>1.0.10</ow2-spec.version>
     <easybeans-utils.version>0.0.1-SNAPSHOT</easybeans-utils.version>
   </properties>
 
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-SymbolicName>org.ow2.easybeans.osgi.persistence.hibernate.v3.5</Bundle-SymbolicName>
-            <Bundle-Activator>org.ow2.easybeans.osgi.hibernate.HibernateActivator</Bundle-Activator>
-            <Private-Package><![CDATA[
-              org.hibernate.ejb.packaging;-split-package:=first,
-              org.jboss.util.file;-split-package:=first
-              ]]>
-            </Private-Package>
-            <Embed-StripGroup>true</Embed-StripGroup>
-            <Embed-Directory>dependencies</Embed-Directory>
-            <Embed-Dependency>*;scope=compile|runtime;inline=true;artifactId=!jboss-common;artifactId=!hibernate-entitymanager</Embed-Dependency>
-            <Import-Package><![CDATA[
-                     !org.objectweb.asm.*,
-                     !org.hibernate.repackage.cglib.asm.util,
-                     !com.ibm.ejs.jts.jta.*,
-                     !com.sun.msv.*,
-                     !com.googlecode.*,
-                     !com.ibm.ws.Transaction.*,
-                     javax.validation.*;resolution:=optional,
-                     com.wutka.*;resolution:=optional,
-                     org.apache.log4j.*;resolution:=optional,
-                     net.sf.cglib.asm.*;resolution:=optional,
-                     org.codehaus.aspectwerkz.*;resolution:=optional,
-                     org.apache.webdav.*;resolution:=optional,
-                     gnu.regexp.*;resolution:=optional,
-                     org.relaxng.datatype;resolution:=optional,
-                     org.jaxen.*;resolution:=optional,
-                     org.apache.solr.*;resolution:=optional,
-                     net.sf.snowball.ext;resolution:=optional,
-                     junit.framework;resolution:=optional,
-                     org.apache.tools.ant.*;resolution:=optional,
-                     org.apache.xerces.*;resolution:=optional,
-                     org.apache.commons.httpclient.*;resolution:=optional,
-                     org.xmlpull.v1.*;resolution:=optional,
-                     org.apache.lucene.analysis.*;resolution:=optional,
-                     org.apache.lucene.search.highlight;resolution:=optional,
-                     org.apache.commons.io;resolution:=optional,
-                     org.apache.commons.codec.*;resolution:=optional,
-                     org.apache.ws.jaxme.*;resolution:=optional,
-                     org.gjt.xpp.*;resolution:=optional,
-                     org.jgroups.*;resolution:=optional,
-                     *
-             ]]>
-            </Import-Package>
-            <DynamicImport-Package>*</DynamicImport-Package>
-            <Export-Package><![CDATA[org.jboss.*;-split-package:=merge-first,org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.osgi.hibernate]]></Export-Package>
-            <_exportcontents><![CDATA[
-                     antlr.*,
-                     org.dom4j.*,
-                     org.hibernate.*,
-                     net.sf.cglib.proxy;-split-package:=merge-first,
-                     net.sf.cglib.reflect;-split-package:=merge-first,
-                     net.sf.cglib.core;-split-package:=merge-first]]>
-            </_exportcontents>
-            <!-- Add version used by some components to know the version -->
-            <Implementation-Version>${project.version}</Implementation-Version>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+  <dependencyManagement>
+    <dependencies>
 
-  <dependencies>
-
-    <!-- JPA spec -->
-    <dependency>
-      <groupId>org.ow2.spec.ee</groupId>
-      <artifactId>ow2-jpa-2.0-spec</artifactId>
-      <version>${ow2-spec.version}</version>
-    </dependency>
-
-    <!-- OSGi -->
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
-      <version>4.3.0</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.ow2.easybeans.utils</groupId>
-      <artifactId>easybeans-utils</artifactId>
-      <version>${easybeans-utils.version}</version>
-    </dependency>
-
-    <!--  Hibernate and dependencies -->
-    <dependency>
-      <groupId>jboss</groupId>
-      <artifactId>jboss-common</artifactId>
-      <version>4.0.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>antlr</groupId>
-      <artifactId>antlr</artifactId>
-      <version>2.7.6</version>
-    </dependency>
     <!--  Core -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -182,17 +82,6 @@
       </exclusions>
     </dependency>
 
-    <dependency>
-      <!-- Javassist version is provided by an external bundle -->
-      <!--
-        Include it here so that proper Import-Packages are generated by
-        Bnd
-      -->
-      <groupId>javassist</groupId>
-      <artifactId>javassist</artifactId>
-      <version>${javassist.version}</version>
-      <scope>provided</scope>
-    </dependency>
 
 
     <!--  Annotations -->
@@ -222,6 +111,11 @@
         <exclusion>
           <groupId>org.hibernate</groupId>
           <artifactId>hibernate-core</artifactId>
+        </exclusion>
+        <!-- Provided -->
+        <exclusion>
+          <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.0-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -269,6 +163,19 @@
           <groupId>org.hibernate</groupId>
           <artifactId>hibernate-core</artifactId>
         </exclusion>
+        <!-- Provided -->
+        <exclusion>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.xml.bind</groupId>
+          <artifactId>jaxb-impl</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
 
@@ -301,6 +208,15 @@
         <exclusion>
           <groupId>javax.transaction</groupId>
           <artifactId>jta</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>cglib</groupId>
+          <artifactId>cglib</artifactId>
+        </exclusion>
+        <!-- Provided -->
+        <exclusion>
+          <groupId>org.hibernate.javax.persistence</groupId>
+          <artifactId>hibernate-jpa-2.0-api</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -347,8 +263,175 @@
           <groupId>javax.annotation</groupId>
           <artifactId>jsr250-api</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>hsqldb</groupId>
+          <artifactId>hsqldb</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>org.ow2.easybeans.osgi.persistence.hibernate.v3.5</Bundle-SymbolicName>
+            <Bundle-Activator>org.ow2.easybeans.osgi.hibernate.HibernateActivator</Bundle-Activator>
+            <Private-Package><![CDATA[
+              org.hibernate.ejb.packaging;-split-package:=first,
+              org.jboss.util.file;-split-package:=first
+              ]]>
+            </Private-Package>
+            <Embed-StripGroup>true</Embed-StripGroup>
+            <Embed-Directory>dependencies</Embed-Directory>
+            <Embed-Dependency>*;scope=compile|runtime;inline=true;artifactId=!jboss-common;artifactId=!hibernate-entitymanager</Embed-Dependency>
+            <Import-Package><![CDATA[
+                     !org.objectweb.asm.*,
+                     !org.hibernate.repackage.cglib.asm.util,
+                     !com.ibm.ejs.jts.jta.*,
+                     !com.sun.msv.*,
+                     !com.googlecode.*,
+                     !com.ibm.ws.Transaction.*,
+                     !com.ibm.websphere.jtaextensions,
+                     bitronix.tm;resolution:=optional,
+                     javax.validation.*;resolution:=optional,
+                     com.wutka.*;resolution:=optional,
+                     org.apache.log4j.*;resolution:=optional,
+                     net.sf.cglib.asm.*;resolution:=optional,
+                     org.codehaus.aspectwerkz.*;resolution:=optional,
+                     org.apache.webdav.*;resolution:=optional,
+                     gnu.regexp.*;resolution:=optional,
+                     org.relaxng.datatype;resolution:=optional,
+                     org.jaxen.*;resolution:=optional,
+                     org.apache.solr.*;resolution:=optional,
+                     net.sf.snowball.ext;resolution:=optional,
+                     junit.framework;resolution:=optional,
+                     org.apache.tools.ant.*;resolution:=optional,
+                     org.apache.xerces.*;resolution:=optional,
+                     org.apache.commons.httpclient.*;resolution:=optional,
+                     org.xmlpull.v1.*;resolution:=optional,
+                     org.apache.lucene.analysis.*;resolution:=optional,
+                     org.apache.lucene.search.highlight;resolution:=optional,
+                     org.apache.commons.io;resolution:=optional,
+                     org.apache.commons.codec.*;resolution:=optional,
+                     org.apache.ws.jaxme.*;resolution:=optional,
+                     org.objectweb.jonas_tm;resolution:=optional,
+                     org.gjt.xpp.*;resolution:=optional,
+                     org.jgroups.*;resolution:=optional,
+                     *
+             ]]>
+            </Import-Package>
+            <DynamicImport-Package>*</DynamicImport-Package>
+            <Export-Package><![CDATA[org.jboss.*;-split-package:=merge-first,org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.osgi.hibernate]]></Export-Package>
+            <_exportcontents><![CDATA[
+                     antlr.*,
+                     org.dom4j.*,
+                     org.hibernate.*,
+                     net.sf.cglib.proxy;-split-package:=merge-first,
+                     net.sf.cglib.reflect;-split-package:=merge-first,
+                     net.sf.cglib.core;-split-package:=merge-first]]>
+            </_exportcontents>
+            <!-- Add version used by some components to know the version -->
+            <Implementation-Version>${project.version}</Implementation-Version>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+
+    <!-- JPA spec -->
+    <dependency>
+      <groupId>org.ow2.spec.ee</groupId>
+      <artifactId>ow2-jpa-2.0-spec</artifactId>
+      <version>${ow2-spec.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- OSGi -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+      <version>4.3.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.ow2.easybeans.utils</groupId>
+      <artifactId>easybeans-utils</artifactId>
+      <version>${easybeans-utils.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--  Hibernate and dependencies -->
+    <dependency>
+      <groupId>jboss</groupId>
+      <artifactId>jboss-common</artifactId>
+      <version>4.0.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>antlr</groupId>
+      <artifactId>antlr</artifactId>
+      <version>2.7.6</version>
+    </dependency>
+
+    <!--  Core -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <!-- Javassist version is provided by an external bundle -->
+      <!--
+        Include it here so that proper Import-Packages are generated by
+        Bnd
+      -->
+      <groupId>javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>${javassist.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!--  Annotations -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-annotations</artifactId>
+    </dependency>
+
+    <!--  Common Annotations -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-commons-annotations</artifactId>
+    </dependency>
+
+    <!-- Validator -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+    </dependency>
+
+    <!--  Entity Manager -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+    </dependency>
+
+    <!--  Search -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-search</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
