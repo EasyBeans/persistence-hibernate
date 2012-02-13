@@ -23,7 +23,7 @@
  * --------------------------------------------------------------------------
  */
 
-package org.ow2.easybeans.osgi.hibernate;
+package org.ow2.easybeans.persistence.hibernate;
 
 import java.util.Dictionary;
 import java.util.Hashtable;

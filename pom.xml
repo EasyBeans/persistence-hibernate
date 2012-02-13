@@ -253,10 +253,11 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName>org.ow2.easybeans.osgi.persistence.hibernate.v4.0</Bundle-SymbolicName>
-            <Bundle-Activator>org.ow2.easybeans.osgi.hibernate.HibernateActivator</Bundle-Activator>
+            <Bundle-SymbolicName>org.ow2.easybeans.persistence.hibernate.v4.0</Bundle-SymbolicName>
+            <Bundle-Activator>org.ow2.easybeans.persistence.hibernate.HibernateActivator</Bundle-Activator>
             <Private-Package><![CDATA[
               org.hibernate.ejb.packaging;-split-package:=first,
+              org.ow2.easybeans.persistence.hibernate
               ]]>
             </Private-Package>
             <Embed-StripGroup>true</Embed-StripGroup>
@@ -295,7 +296,7 @@
              ]]>
             </Import-Package>
             <DynamicImport-Package>*</DynamicImport-Package>
-            <Export-Package><![CDATA[org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.osgi.hibernate]]></Export-Package>
+            <Export-Package><![CDATA[org.hibernate.*;-split-package:=merge-first]]></Export-Package>
             <_exportcontents><![CDATA[
                      antlr.*,
                      org.dom4j.*,
