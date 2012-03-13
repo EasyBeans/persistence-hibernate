@@ -167,7 +167,7 @@ public class JarVisitorFactory {
         if (file.isFile()) {
             return new InputStreamZippedJarVisitor(jarPath, filters);
         } else {
-            return new ExplodedJarVisitor(jarPath, filters);
+            return new EasyBeansExplodedJarVisitor(jarPath, filters);
         }
     }
 
@@ -204,7 +204,7 @@ public class JarVisitorFactory {
             }
 
             if (file.isDirectory()) {
-                return new ExplodedJarVisitor(jarUrl, filters, entry);
+                return new EasyBeansExplodedJarVisitor(jarUrl, filters, entry);
             } else {
                 return new FileZippedJarVisitor(jarUrl, filters, entry);
             }
