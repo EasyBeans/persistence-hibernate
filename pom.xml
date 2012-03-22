@@ -31,11 +31,11 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.ow2.easybeans.persistence</groupId>
-  <artifactId>easybeans-persistence-hibernate-4.0</artifactId>
+  <artifactId>easybeans-persistence-hibernate-4.1</artifactId>
   <packaging>bundle</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>EasyBeans/Persistence :: Hibernate :: v4.0</name>
-  <description>Easybeans Hibernate 4.0 bundle</description>
+  <name>EasyBeans/Persistence :: Hibernate :: v4.1</name>
+  <description>Easybeans Hibernate 4.1 bundle</description>
 
   <properties>
     <hibernate-core.version>4.1.1.Final</hibernate-core.version>
