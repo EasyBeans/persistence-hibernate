@@ -258,7 +258,7 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Bundle-SymbolicName>org.ow2.easybeans.persistence.hibernate.v4.0</Bundle-SymbolicName>
+            <Bundle-SymbolicName>org.ow2.easybeans.persistence.hibernate.v4.1</Bundle-SymbolicName>
             <Bundle-Activator>org.ow2.easybeans.persistence.hibernate.HibernateActivator</Bundle-Activator>
             <Private-Package><![CDATA[
               org.hibernate.ejb.packaging;-split-package:=first,
@@ -343,14 +343,6 @@
       <version>${easybeans-utils.version}</version>
       <scope>provided</scope>
     </dependency>
-
-    <!--  Hibernate and dependencies
-    <dependency>
-      <groupId>jboss</groupId>
-      <artifactId>jboss-common</artifactId>
-      <version>4.0.4</version>
-    </dependency>
- -->
 
     <dependency>
       <groupId>antlr</groupId>
