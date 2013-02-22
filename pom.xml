@@ -45,7 +45,7 @@
     <hibernate-search.version>3.1.1.GA</hibernate-search.version>
     <hibernate-commons-annotations.version>3.2.0.Final</hibernate-commons-annotations.version>
     <javassist.version>3.12.1.GA</javassist.version>
-    <ow2-spec.version>1.0.10</ow2-spec.version>
+    <ow2-spec.version>1.0.13-SNAPSHOT</ow2-spec.version>
     <easybeans-utils.version>0.0.1-SNAPSHOT</easybeans-utils.version>
   </properties>
 
