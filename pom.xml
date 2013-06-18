@@ -38,9 +38,9 @@
   <description>Easybeans Hibernate 4.1 bundle</description>
 
   <properties>
-    <hibernate-core.version>4.1.1.Final</hibernate-core.version>
+    <hibernate-core.version>4.1.12.Final</hibernate-core.version>
     <hibernate-validator.version>4.2.0.Final</hibernate-validator.version>
-    <hibernate-entitymanager.version>4.1.1.Final</hibernate-entitymanager.version>
+    <hibernate-entitymanager.version>4.1.12.Final</hibernate-entitymanager.version>
     <hibernate-search.version>4.0.0.Final</hibernate-search.version>
     <hibernate-commons-annotations.version>4.0.1.Final</hibernate-commons-annotations.version>
     <javassist.version>3.15.0-GA</javassist.version>
@@ -272,6 +272,9 @@
                      !org.hibernate.repackage.cglib.asm.util,
                      !com.sun.msv.*,
                      !com.googlecode.*,
+                     javax.transaction.*;version=1.1,
+                     javax.jms.*;resolution:=optional,
+                     javax.security.jacc.*;resolution:=optional,
                      bitronix.tm;resolution:=optional,
                      com.fasterxml.classmate.*;resolution:=optional,
                      org.apache.avro.*;resolution:=optional,
@@ -301,7 +304,7 @@
              ]]>
             </Import-Package>
             <DynamicImport-Package>*</DynamicImport-Package>
-            <Export-Package><![CDATA[!org.hibernate.validator,!org.hibernate.validator.*,org.hibernate.*;-split-package:=merge-first]]></Export-Package>
+            <Export-Package><![CDATA[!org.hibernate.validator,!org.hibernate.validator.*,org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.util.osgi;version=1.0.0]]></Export-Package>
             <_exportcontents><![CDATA[
                      antlr.*,
                      org.dom4j.*,
