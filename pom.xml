@@ -300,6 +300,7 @@
                      org.objectweb.jonas_tm;resolution:=optional,
                      org.gjt.xpp.*;resolution:=optional,
                      org.jgroups.*;resolution:=optional,
+                     org.ow2.easybeans.util.osgi,
                      *
              ]]>
             </Import-Package>
