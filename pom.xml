@@ -262,7 +262,9 @@
             <Bundle-Activator>org.ow2.easybeans.persistence.hibernate.HibernateActivator</Bundle-Activator>
             <Private-Package><![CDATA[
               org.hibernate.ejb.packaging;-split-package:=first,
-              org.ow2.easybeans.persistence.hibernate
+              org.ow2.easybeans.persistence.hibernate,
+              antlr.*,
+              org.dom4j.*
               ]]>
             </Private-Package>
             <Embed-StripGroup>true</Embed-StripGroup>
@@ -307,8 +309,6 @@
             <DynamicImport-Package>*</DynamicImport-Package>
             <Export-Package><![CDATA[!org.hibernate.validator,!org.hibernate.validator.*,org.hibernate.*;-split-package:=merge-first,org.ow2.easybeans.util.osgi;version=1.0.0]]></Export-Package>
             <_exportcontents><![CDATA[
-                     antlr.*,
-                     org.dom4j.*,
                      org.hibernate.*,
                      org.jboss.logging,
                      net.sf.cglib.proxy;-split-package:=merge-first,
