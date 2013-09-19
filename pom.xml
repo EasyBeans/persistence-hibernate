@@ -33,7 +33,7 @@
   <groupId>org.ow2.easybeans.persistence</groupId>
   <artifactId>easybeans-persistence-hibernate-3.6</artifactId>
   <packaging>bundle</packaging>
-  <version>1.0.1</version>
+  <version>1.0.2-SNAPSHOT</version>
   <name>EasyBeans/Persistence :: Hibernate :: v3.6</name>
   <description>Easybeans Hibernate 3.6 bundle</description>
 
